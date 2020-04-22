@@ -12,6 +12,25 @@ import SnapKit
 
 class FlightsViewController: UIViewController {
     
+    lazy var planeInСircle: UIImageView = {
+        let view = UIImageView(image: .planeCircle)
+        view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        view.layer.cornerRadius = 19
+        return view
+    }()
+    
+    lazy var planeInСircleShadow: UIView = {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        view.layer.cornerRadius = 19
+      //  view.layer.cornerRadius = 6
+        view.layer.shadowColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        view.layer.shadowRadius = 5
+        view.layer.shadowOpacity = 0.4
+        view.layer.shadowOffset = CGSize(width: 2, height: 2)
+        return view
+    }()
+    
     lazy var topCardView: UIView = {
         let view = UIView()
         return view
@@ -195,6 +214,8 @@ class FlightsViewController: UIViewController {
         topCardView.addSubview(fonImageView)
         topCardView.addSubview(titleLabel)
         view.addSubview(bottomCardView)
+        view.addSubview(planeInСircleShadow)
+        view.addSubview(planeInСircle)
         bottomCardView.addSubview(leftButton)
         leftButton.addSubview(fromLBLLabel)
         leftButton.addSubview(mainLBLLabel)
@@ -212,6 +233,20 @@ class FlightsViewController: UIViewController {
         bottomCardView.addSubview(stopsButton)
         stopsButton.addSubview(stopsLabel)
         stopsButton.addSubview(nameStopsLabel)
+        
+        planeInСircle.snp.makeConstraints({ item in
+            item.top.equalToSuperview().offset(280)
+            item.height.equalTo(39)
+            item.width.equalTo(39)
+            item.right.equalToSuperview().offset(-23)
+        })
+        
+        planeInСircleShadow.snp.makeConstraints({ item in
+            item.top.equalToSuperview().offset(280)
+            item.height.equalTo(39)
+            item.width.equalTo(39)
+            item.right.equalToSuperview().offset(-23)
+        })
         
         topCardView.snp.makeConstraints({ item in
             item.top.equalToSuperview()
@@ -353,7 +388,11 @@ class FlightsViewController: UIViewController {
     
     @objc
     private func didTapRightButton() {
-        print("Переход")
+        
+        let controller = AirportOnMapViewController()
+        navigationController?.pushViewController(controller, animated: true)
+        
+        print("Переход на карту")
     }
     
 }

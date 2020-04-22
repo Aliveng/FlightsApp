@@ -8,8 +8,8 @@
 
 import UIKit
 
+
 extension UIFont {
-    
     static let sansation = UIFont(name: "sansation.regular", size: 19)
     
 }

@@ -12,5 +12,9 @@ import UIKit
 extension UIImage {
     static let backFon = UIImage(imageLiteralResourceName: "BG")
     static let buildings = UIImage(imageLiteralResourceName: "illustration")
-    
+    static let planeCircle = UIImage(imageLiteralResourceName: "Group8")
+    static let mapImg = UIImage(imageLiteralResourceName: "Group3")
+    static let smallPlane = UIImage(imageLiteralResourceName: "palne")
+    static let bottomViewImg = UIImage(imageLiteralResourceName: "CombinedShape")
+    static let barcodeImg = UIImage(imageLiteralResourceName: "Bitmap")
 }
