@@ -62,74 +62,50 @@ class FlightsViewController: UIViewController {
         return view
     }()
     
-    lazy var leftButton : UIButton = {
-        let view = UIButton()
-        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//    lazy var leftButton : UIButton = {
+//        let view = UIButton()
+//        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//        return view
+//    }()
+    
+    lazy var fromView: LabelsView = {
+        let view = LabelsView(caption: "from", title: "EGYPT", subtitle: "NAG")
         return view
     }()
     
-    lazy var fromLBLLabel: UILabel = {
-        let view = UILabel()
-        view.textAlignment = .left
-        view.textColor = .fontSmall
-        view.font = .boldSystemFont(ofSize: 10)
-        view.text = "From"
+    lazy var toView: LabelsView = {
+        let view = LabelsView(caption: "to", title: "INDIA", subtitle: "ATZ")
         return view
     }()
     
-    lazy var mainLBLLabel: UILabel = {
-        let view = UILabel()
-        view.textAlignment = .left
-        view.textColor = .fontBig
-        view.font = .boldSystemFont(ofSize: 17)
-        view.text = "EGYPT"
-        return view
-    }()
     
-    lazy var airportLBLabel: UILabel = {
-        let view = UILabel()
-        view.textAlignment = .left
-        view.textColor = .fontBig
-        view.font = .boldSystemFont(ofSize: 12)
-        view.text = "NAG"
-        return view
-    }()
-    
-    lazy var rightButton : UIButton = {
-        let view = UIButton()
-        view.backgroundColor = #colorLiteral(red: 0.9802979827, green: 0.9805260301, blue: 0.9761922956, alpha: 1) //светло серый
-        view.addTarget(self,
-                       action: #selector(didTapRightButton),
-                       for: .touchUpInside)
-        return view
-    }()
-    
-    lazy var toRBLabel: UILabel = {
-        let view = UILabel()
-        view.textAlignment = .left
-        view.textColor = .fontSmall
-        view.font = .boldSystemFont(ofSize: 9)
-        view.text = "To"
-        return view
-    }()
-    
-    lazy var mainRBLabel: UILabel = {
-        let view = UILabel()
-        view.textAlignment = .left
-        view.textColor = .fontBig
-        view.font = .boldSystemFont(ofSize: 16)
-        view.text = "INDIA"
-        return view
-    }()
-    
-    lazy var airportRBLabel: UILabel = {
-        let view = UILabel()
-        view.textAlignment = .left
-        view.textColor = .fontBig
-        view.font = .boldSystemFont(ofSize: 11)
-        view.text = "ATZ"
-        return view
-    }()
+//    lazy var fromLBLLabel: UILabel = {
+//        let view = UILabel()
+//        view.textAlignment = .left
+//        view.textColor = .fontSmall
+//        view.font = .boldSystemFont(ofSize: 10)
+//        view.text = "From"
+//        return view
+//    }()
+//
+//    lazy var mainLBLLabel: UILabel = {
+//        let view = UILabel()
+//        view.textAlignment = .left
+//        view.textColor = .fontBig
+//        view.font = .boldSystemFont(ofSize: 17)
+//        view.text = "EGYPT"
+//        return view
+//    }()
+//
+//    lazy var airportLBLabel: UILabel = {
+//        let view = UILabel()
+//        view.textAlignment = .left
+//        view.textColor = .fontBig
+//        view.font = .boldSystemFont(ofSize: 12)
+//        view.text = "NAG"
+//        return view
+//    }()
+//
     
     lazy var travellerButton : UIButton = {
         let view = UIButton()
@@ -216,14 +192,16 @@ class FlightsViewController: UIViewController {
         view.addSubview(bottomCardView)
         view.addSubview(planeInСircleShadow)
         view.addSubview(planeInСircle)
-        bottomCardView.addSubview(leftButton)
-        leftButton.addSubview(fromLBLLabel)
-        leftButton.addSubview(mainLBLLabel)
-        leftButton.addSubview(airportLBLabel)
-        bottomCardView.addSubview(rightButton)
-        rightButton.addSubview(toRBLabel)
-        rightButton.addSubview(mainRBLabel)
-        rightButton.addSubview(airportRBLabel)
+       // bottomCardView.addSubview(leftButton)
+        bottomCardView.addSubview(fromView)
+        bottomCardView.addSubview(toView)
+//        leftButton.addSubview(fromLBLLabel)
+//        leftButton.addSubview(mainLBLLabel)
+//        leftButton.addSubview(airportLBLabel)
+       // bottomCardView.addSubview(rightButton)
+//        rightButton.addSubview(toRBLabel)
+//        rightButton.addSubview(mainRBLabel)
+//        rightButton.addSubview(airportRBLabel)
         bottomCardView.addSubview(travellerButton)
         travellerButton.addSubview(travellerLabel)
         travellerButton.addSubview(typeTravellerLabel)
@@ -277,58 +255,58 @@ class FlightsViewController: UIViewController {
             item.left.right.equalToSuperview()
         })
         
-        leftButton.snp.makeConstraints({ item in
+        fromView.snp.makeConstraints({ item in
             item.top.equalToSuperview()
             item.height.equalTo(85)
             item.width.equalTo(UIScreen.main.bounds.width / 2)
             item.left.equalToSuperview()
         })
         
-        fromLBLLabel.snp.makeConstraints({ item in
-            item.top.equalToSuperview().offset(19)
-            item.left.equalToSuperview().offset(24)
-            item.right.equalToSuperview()
-        })
+//        fromLBLLabel.snp.makeConstraints({ item in
+//            item.top.equalToSuperview().offset(19)
+//            item.left.equalToSuperview().offset(24)
+//            item.right.equalToSuperview()
+//        })
+//
+//        mainLBLLabel.snp.makeConstraints({ item in
+//            item.top.equalTo(fromLBLLabel.snp.bottom).offset(1.94)
+//            item.left.equalToSuperview().offset(24)
+//            item.right.equalToSuperview()
+//        })
+//
+//        airportLBLabel.snp.makeConstraints({ item in
+//            item.top.equalTo(mainLBLLabel.snp.bottom).offset(2.66)
+//            item.left.equalToSuperview().offset(24)
+//            item.right.equalToSuperview()
+//        })
         
-        mainLBLLabel.snp.makeConstraints({ item in
-            item.top.equalTo(fromLBLLabel.snp.bottom).offset(1.94)
-            item.left.equalToSuperview().offset(24)
-            item.right.equalToSuperview()
-        })
-        
-        airportLBLabel.snp.makeConstraints({ item in
-            item.top.equalTo(mainLBLLabel.snp.bottom).offset(2.66)
-            item.left.equalToSuperview().offset(24)
-            item.right.equalToSuperview()
-        })
-        
-        rightButton.snp.makeConstraints({ item in
+        toView.snp.makeConstraints({ item in
             item.top.equalToSuperview()
             item.height.equalTo(85)
             item.width.equalTo(UIScreen.main.bounds.width / 2)
             item.right.equalToSuperview()
         })
         
-        toRBLabel.snp.makeConstraints({ item in
-            item.top.equalToSuperview().offset(19)
-            item.left.equalToSuperview().offset(24)
-            item.right.equalToSuperview()
-        })
+//        toRBLabel.snp.makeConstraints({ item in
+//            item.top.equalToSuperview().offset(19)
+//            item.left.equalToSuperview().offset(24)
+//            item.right.equalToSuperview()
+//        })
         
-        mainRBLabel.snp.makeConstraints({ item in
-            item.top.equalTo(fromLBLLabel.snp.bottom).offset(1.94)
-            item.left.equalToSuperview().offset(24)
-            item.right.equalToSuperview()
-        })
-        
-        airportRBLabel.snp.makeConstraints({ item in
-            item.top.equalTo(mainLBLLabel.snp.bottom).offset(2.66)
-            item.left.equalToSuperview().offset(24)
-            item.right.equalToSuperview()
-        })
+//        mainRBLabel.snp.makeConstraints({ item in
+//            item.top.equalTo(fromLBLLabel.snp.bottom).offset(1.94)
+//            item.left.equalToSuperview().offset(24)
+//            item.right.equalToSuperview()
+//        })
+//
+//        airportRBLabel.snp.makeConstraints({ item in
+//            item.top.equalTo(mainLBLLabel.snp.bottom).offset(2.66)
+//            item.left.equalToSuperview().offset(24)
+//            item.right.equalToSuperview()
+//        })
         
         travellerButton.snp.makeConstraints({ item in
-            item.top.equalTo(leftButton.snp.bottom)
+            item.top.equalTo(fromView.snp.bottom)
             item.height.equalTo(85)
             item.width.equalTo(UIScreen.main.bounds.width / 2)
             item.left.equalToSuperview()
@@ -347,7 +325,7 @@ class FlightsViewController: UIViewController {
         })
         
         classButton.snp.makeConstraints({ item in
-            item.top.equalTo(rightButton.snp.bottom)
+            item.top.equalTo(toView.snp.bottom)
             item.height.equalTo(85)
             item.width.equalTo(UIScreen.main.bounds.width / 2)
             item.right.equalToSuperview()
