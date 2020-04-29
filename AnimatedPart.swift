@@ -27,6 +27,7 @@ class AnimatedPart: UIView {
         layer.bounds = CGRect(x: 100, y: 160, width: 13.92, height: 15.09)
         layer.position = CGPoint(x: 100, y: 160)
         layer.contents = UIImage(named: "palne")?.cgImage
+    //    layer.
         return layer
     }()
     
@@ -83,6 +84,89 @@ class AnimatedPart: UIView {
         layer.addSublayer(pointEgypt)
         layer.addSublayer(pointIndia)
         layer.addSublayer(plane)
+        
+        addAnimation()
+        
+    }
+    
+    private func addAnimation() {
+        
+      //  let go = CABasicAnimation(keyPath: "position")
+        
+        let go = CAKeyframeAnimation(keyPath: "position")
+        
+//        let checkmarkPath = UIBezierPath()
+//        checkmarkPath.move(to: CGPoint(x: bounds.height - padding, y: padding))
+//        checkmarkPath.addLine(to: CGPoint(x: 2 * padding, y: bounds.height -  padding))
+//        checkmarkPath.addLine(to: CGPoint(x: padding, y: bounds.height / 2))
+        
+//        let fromPathPlane = UIBezierPath()
+//        fromPathPlane.move(to: CGPoint(x: 100, y: 160))
+//        fromPathPlane.addCurve(to: CGPoint(x: 236, y: 160),
+//                               controlPoint1: CGPoint(x: 100, y: 160),
+//                               controlPoint2: CGPoint(x: 176, y: 116))
+//
+//
+//        let toPathPlane = UIBezierPath()
+//        toPathPlane.move(to: CGPoint(x: 100, y: 160))
+//        toPathPlane.addCurve(to: CGPoint(x: 236, y: 160),
+//                      controlPoint1: CGPoint(x: 100, y: 160),
+//                      controlPoint2: CGPoint(x: 176, y: 116))
+        
+        
+//        func animate(view : UIView, fromPoint start : CGPoint, toPoint end: CGPoint)
+//        {
+//            // The animation
+//            let animation = CAKeyframeAnimation(keyPath: "position")
+//
+//            // Animation path
+//            let path = UIBezierPath()
+//
+//            // Move the "cursor" to the start
+//            path.move(to: start)
+//
+//            // Calculate the control points
+//            let c1 = CGPoint(x: start.x + 64, y: start.y)
+//            let c2 = CGPoint(x: end.x,        y: end.y - 128)
+//
+//            // Draw a curve towards the end, using control points
+//            path.addCurve(to: end, controlPoint1: c1, controlPoint2: c2)
+//
+//            // Use this path as the animation path (casted to CGPath)
+//            animation.path = path.cgPath;
+//
+//            // The other animations properties
+//            animation.fillMode              = kCAFillModeForwards
+//            animation.isRemovedOnCompletion = false
+//            animation.duration              = 1.0
+//            animation.timingFunction        = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseIn)
+//
+//            // Apply it
+//            view.layer.add(animation, forKey:"trash")
+//        }
+        
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 100, y: 160))
+        let c1 = CGPoint(x: 100, y: 160)
+        let c2 = CGPoint(x: 176, y: 116)
+        path.addCurve(to: CGPoint(x: 236, y: 160), controlPoint1: c1, controlPoint2: c2)
+        go.path = path.cgPath
+        
+       // go.fromValue = CGPoint(x: 100, y: 160)
+       // go.byValue = toPathPlane.cgPath
+       // go.toValue = CGPoint(x: 236, y: 160)
+       // go.fromValue = CGPoint(x: 100, y: 160)
+       // go.toValue = CGPoint(x: 236, y: 160)
+        
+      // go.byValue = toPathPlane
+        
+        go.autoreverses = false
+        go.duration = 5
+        go.repeatCount = .zero
+    
+        
+        
+        plane.add(go, forKey: nil)
         
     }
     
