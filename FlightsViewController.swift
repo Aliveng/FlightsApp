@@ -95,21 +95,21 @@ class FlightsViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.isNavigationBarHidden = true
-        
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        view.addSubview(topCardView)
-        topCardView.addSubview(backImageView)
-        topCardView.addSubview(buildingsImageView)
-        topCardView.addSubview(titleButton)
-        view.addSubview(bottomCardView)
-        view.addSubview(planeInСircleShadow)
-        view.addSubview(planeInСircle)
+        
         bottomCardView.addSubview(fromView)
         bottomCardView.addSubview(toView)
         bottomCardView.addSubview(travellerView)
         bottomCardView.addSubview(classView)
         bottomCardView.addSubview(stopsView)
-        
+        topCardView.addSubview(backImageView)
+        topCardView.addSubview(buildingsImageView)
+        topCardView.addSubview(titleButton)
+        view.addSubview(planeInСircleShadow)
+        view.addSubview(planeInСircle)
+        view.addSubview(topCardView)
+        view.addSubview(bottomCardView)
+
         planeInСircle.snp.makeConstraints({ item in
             item.top.equalToSuperview().offset(280)
             item.height.equalTo(39)
@@ -192,12 +192,8 @@ class FlightsViewController: UIViewController {
     
     @objc
     private func didTapLabel() {
-        
         let controller = AirportOnMapViewController()
         navigationController?.pushViewController(controller, animated: true)
-        
         print("Переход на карту")
     }
-    
 }
-

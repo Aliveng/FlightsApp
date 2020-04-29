@@ -12,49 +12,20 @@ import SnapKit
 
 class AirportOnMapViewController: UIViewController {
     
+    lazy var animatedView: AnimatedPart = {
+        let view = AnimatedPart()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     lazy var topCardView: UIView = {
         let view = UIView()
         return view
     }()
     
-    lazy var fromAirportLabel: UILabel = {
-        let view = UILabel()
-        view.textColor = .white
-        view.text = "NAG"
-        view.font = UIFont(name: "Sansation-Bold", size: 19.33)
-        view.textAlignment = .left
-        return view
-    }()
-    
-    lazy var smallPlaneImageView: UIImageView = {
-        let view = UIImageView(image: .smallPlane)
-        return view
-    }()
-    
-    lazy var toAirportLabel: UILabel = {
-        let view = UILabel()
-        view.textColor = .white
-        view.text = "ATZ"
-        view.font = UIFont(name: "Sansation-Bold", size: 19.33)
-        view.textAlignment = .left
-        return view
-    }()
-    
-    lazy var timeOfDepartureLabel: UILabel = {
-        let view = UILabel()
-        view.textAlignment = .left
-        view.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        view.font = .boldSystemFont(ofSize: 9)
-        view.text = "18 h 10 min +"
-        return view
-    }()
-    
-    lazy var timeOfArrivalLabel: UILabel = {
-        let view = UILabel()
-        view.textAlignment = .left
-        view.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        view.font = .boldSystemFont(ofSize: 9)
-        view.text = "Boarding: 1:10 PM"
+    lazy var bottomCardView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .fonBottomView
         return view
     }()
     
@@ -69,56 +40,89 @@ class AirportOnMapViewController: UIViewController {
         return view
     }()
     
-    lazy var bottomCardView: UIView = {
+    lazy var titleView: UIView = {
         let view = UIView()
-        view.backgroundColor = .fonBottomView
+        view.addSubview(departureView)
+        view.addSubview(smallPlaneImageView)
+        view.addSubview(boardingView)
+        return view
+    }()
+    
+    lazy var departureView: LabelsView = {
+        let view = LabelsView(caption: "", title: "NAG", subtitle: "18 h 10 min +")
+        view.titleLabel.font = .boldSystemFont(ofSize: 15)
+        view.titleLabel.textColor = .white
+        view.subtitleLabel.font = .boldSystemFont(ofSize: 9)
+        view.subtitleLabel.textColor = .white
+        return view
+    }()
+    
+    lazy var smallPlaneImageView: UIImageView = {
+        let view = UIImageView(image: .smallPlane)
+        return view
+    }()
+    
+    lazy var boardingView: LabelsView = {
+        let view = LabelsView(caption: "", title: "ATZ", subtitle: "Boarding: 1:10 PM")
+        view.titleLabel.font = .boldSystemFont(ofSize: 15)
+        view.titleLabel.textColor = .white
+        view.subtitleLabel.font = .boldSystemFont(ofSize: 9)
+        view.subtitleLabel.textColor = .white
         return view
     }()
     
     lazy var infoCardView: UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        view.layer.shadowColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-                  view.layer.shadowRadius = 15
-                  view.layer.shadowOpacity = 0.7
-                  view.layer.shadowOffset = CGSize(width: 3, height: 3)
-//view.layer.borderColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-   //     view.layer.borderWidth = 1
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        view.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        view.layer.shadowRadius = 10
+        view.layer.shadowOpacity = 0.6
+        view.layer.shadowOffset = CGSize(width: 3, height: 3)
         view.accessibilityLabel = "infoCardView"
-        view.addSubview(passengerLabel)
-        view.addSubview(nameLabel)
-        return view
-    }()
-
-    
-    lazy var passengerLabel: UILabel = {
-        let view = UILabel()
-        view.textAlignment = .left
-        view.textColor = .fontSmall
-        view.font = .boldSystemFont(ofSize: 10)
-        view.text = "Passenger"
         return view
     }()
     
-    lazy var nameLabel: UILabel = {
-        let view = UILabel()
-        view.textAlignment = .left
-        view.textColor = .fontBig
-        view.font = .boldSystemFont(ofSize: 17)
-        view.text = "Peter Johnson"
+    lazy var passengerView: LabelsView = {
+        let view = LabelsView(caption: "Passenger", title: "Peter Johnson", subtitle: "")
+        return view
+    }()
+    
+    lazy var flightView: LabelsView = {
+        let view = LabelsView(caption: "Flight", title: "VX", subtitle: "221")
+        view.backgroundColor = .clear
+        view.subtitleLabel.font = .boldSystemFont(ofSize: 17)
+        return view
+    }()
+    
+    
+    lazy var seatView: LabelsView = {
+        let view = LabelsView(caption: "Seat", title: "22", subtitle: "A")
+        view.backgroundColor = .clear
+        view.subtitleLabel.font = .boldSystemFont(ofSize: 17)
+        return view
+    }()
+    
+    lazy var cabinView: LabelsView = {
+        let view = LabelsView(caption: "Cabin", title: "First", subtitle: "")
+        view.backgroundColor = .clear
         return view
     }()
     
     lazy var barcodeCardView: UIView = {
-            let view = UIView()
+        let view = UIView()
         view.backgroundColor = .fonBottomView
-        view.addSubview(bottomViewImg)
+        view.addSubview(bottomImgView)
         view.accessibilityLabel = "barcodeCardView"
-            return view
-        }()
+        return view
+    }()
     
-    lazy var bottomViewImg: UIImageView = {
+    lazy var bottomImgView: UIImageView = {
         let view = UIImageView(image: .bottomViewImg)
+        return view
+    }()
+    
+    lazy var barcodeImgView: UIImageView = {
+        let view = UIImageView(image: .barcodeImg)
         return view
     }()
     
@@ -129,21 +133,24 @@ class AirportOnMapViewController: UIViewController {
         
         view.backgroundColor = .fonBottomView
         view.addSubview(topCardView)
-        view.addSubview(bottomCardView)
         topCardView.addSubview(mapImageView)
         topCardView.addSubview(backImageView)
-        topCardView.addSubview(fromAirportLabel)
-        topCardView.addSubview(smallPlaneImageView)
-        topCardView.addSubview(toAirportLabel)
-        topCardView.addSubview(timeOfDepartureLabel)
-        topCardView.addSubview(timeOfArrivalLabel)
-       
-       
+        topCardView.addSubview(titleView)
+        view.addSubview(bottomCardView)
+        infoCardView.addSubview(passengerView)
+        infoCardView.addSubview(flightView)
+        infoCardView.addSubview(seatView)
+        infoCardView.addSubview(cabinView)
         bottomCardView.addSubview(barcodeCardView)
-       
+        barcodeCardView.addSubview(barcodeImgView)
         bottomCardView.addSubview(infoCardView)
+        view.addSubview(animatedView)
         
-       
+        animatedView.snp.makeConstraints({ item in
+            item.top.equalToSuperview().offset(30)
+            item.height.equalToSuperview().offset(30)
+            item.left.right.equalToSuperview().offset(20)
+        })
         
         topCardView.snp.makeConstraints({ item in
             item.top.equalToSuperview()
@@ -164,34 +171,28 @@ class AirportOnMapViewController: UIViewController {
             item.left.right.equalToSuperview()
         })
         
-        fromAirportLabel.snp.makeConstraints({ item in
+        titleView.snp.makeConstraints({ item in
+            item.top.equalToSuperview()
+            item.left.equalToSuperview()
+        })
+        
+        departureView.snp.makeConstraints({ item in
             item.top.equalToSuperview().offset(46.42)
             item.height.equalTo(48)
-            item.left.equalToSuperview().offset(23)
-        })
-        
-        timeOfDepartureLabel.snp.makeConstraints({ item in
-            item.top.equalTo(fromAirportLabel.snp.bottom).offset(2.66)
-            item.left.equalToSuperview().offset(23)
-           // item.right.equalToSuperview()
-        })
-        
-        timeOfArrivalLabel.snp.makeConstraints({ item in
-            item.top.equalTo(toAirportLabel.snp.bottom).offset(2.66)
-            item.left.equalTo(timeOfDepartureLabel.snp.right).offset(15.44)
+            item.left.equalToSuperview()
         })
         
         smallPlaneImageView.snp.makeConstraints({ item in
-            item.top.equalToSuperview().offset(46.42)
-            item.centerY.equalTo(fromAirportLabel.snp.centerY)
-            item.height.equalTo(15.09)
-            item.left.equalTo(fromAirportLabel.snp.right).offset(11.59)
+            item.top.equalToSuperview().offset(70)
+            item.height.equalTo(15)
+            item.width.equalTo(15)
+            item.left.equalTo(departureView.snp.right).offset(-7)
         })
         
-        toAirportLabel.snp.makeConstraints({ item in
+        boardingView.snp.makeConstraints({ item in
             item.top.equalToSuperview().offset(46.42)
-            item.centerY.equalTo(fromAirportLabel.snp.centerY)
-            item.left.equalTo(smallPlaneImageView.snp.right).offset(11.59)
+            item.centerY.equalTo(departureView.snp.centerY)
+            item.left.equalTo(smallPlaneImageView.snp.right).offset(-10)
         })
         
         bottomCardView.snp.makeConstraints({ item in
@@ -208,30 +209,51 @@ class AirportOnMapViewController: UIViewController {
         
         barcodeCardView.snp.makeConstraints({ item in
             item.top.equalTo(infoCardView.snp.bottom)
-            item.height.equalTo(100)
-//item.centerX.equalToSuperview()
-        item.left.right.equalToSuperview()
+            item.height.equalTo(120)
+            item.left.right.equalToSuperview()
         })
         
-        bottomViewImg.snp.makeConstraints({ item in
-            item.top.equalToSuperview().offset(-9)
-            item.height.equalTo(100)
+        bottomImgView.snp.makeConstraints({ item in
+            item.top.equalToSuperview().offset(-5)
+            item.height.equalTo(120)
             item.centerX.equalToSuperview()
             item.left.right.equalToSuperview()
         })
         
-        passengerLabel.snp.makeConstraints({ item in
-            item.top.equalToSuperview().offset(19)
-            item.left.equalToSuperview().offset(24)
+        barcodeImgView.snp.makeConstraints({ item in
+            item.top.equalToSuperview().offset(35)
+            item.height.equalTo(60.07)
+            item.width.equalTo(110.49)
+            item.centerX.equalToSuperview().offset(10)
+            item.left.equalToSuperview().offset(71.92)
+          
+        })
+        
+        passengerView.snp.makeConstraints({ item in
+            item.top.equalToSuperview()
+            item.left.equalToSuperview()
             item.right.equalToSuperview()
         })
         
-        nameLabel.snp.makeConstraints({ item in
-            item.top.equalTo(passengerLabel.snp.bottom).offset(1.94)
-            item.left.equalToSuperview().offset(24)
+        flightView.snp.makeConstraints({ item in
+            item.top.equalToSuperview().offset(45)
+            item.width.equalTo(UIScreen.main.bounds.width / 3)
+            item.left.equalToSuperview()
             item.right.equalToSuperview()
         })
         
+        seatView.snp.makeConstraints({ item in
+            item.top.equalToSuperview().offset(45)
+            item.width.equalTo(UIScreen.main.bounds.width / 3)
+            item.left.equalToSuperview().offset(110)
+            item.right.equalToSuperview()
+        })
+        
+        cabinView.snp.makeConstraints({ item in
+            item.top.equalToSuperview().offset(45)
+            item.width.equalTo(UIScreen.main.bounds.width / 3)
+            item.left.equalToSuperview().offset(198)
+            item.right.equalToSuperview()
+        })
     }
-    
 }

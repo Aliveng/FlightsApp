@@ -14,5 +14,6 @@ extension UIColor {
     static let fontSmall = UIColor(hex: "CDCDCD")
     static let fontBig = UIColor(hex: "545454")
     static let fonBottomView = UIColor(hex: "FAFAF9")
+    static let yellowPath = UIColor(hex: "FFCC03")
     
 }
