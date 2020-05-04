@@ -37,6 +37,7 @@ class AirportOnMapViewController: UIViewController {
     
     lazy var mapImageView: UIImageView = {
         let view = UIImageView(image: .mapImg)
+        view.contentMode = .scaleAspectFill
         return view
     }()
     
@@ -125,6 +126,11 @@ class AirportOnMapViewController: UIViewController {
         let view = UIImageView(image: .barcodeImg)
         return view
     }()
+    
+//        lazy var barcodeView: BarCodeView = {
+//            let view = BarCodeView(
+//            return view
+//        }()
     
     override func viewDidLoad() {
         super.viewDidLoad()

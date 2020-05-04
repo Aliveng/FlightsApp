@@ -15,7 +15,7 @@ class AnimatedPart: UIView {
     lazy var plane: CALayer = {
         let layer = CALayer()
         layer.backgroundColor = UIColor.clear.cgColor
-        layer.bounds = CGRect(x: 100, y: 160, width: 13.92, height: 15.09)
+        layer.frame = CGRect(x: 100, y: 160, width: 13.92, height: 15.09)
         layer.position = CGPoint(x: 100, y: 160)
         layer.contents = UIImage(named: "palne")?.cgImage
         return layer
@@ -71,10 +71,14 @@ class AnimatedPart: UIView {
         layer.addSublayer(pointIndia)
         layer.addSublayer(plane)
         
-        addFlightAnimation()
+        //  addFlightAnimation()
+        addScaleAndFligAnimation()
+        
+        
     }
     
-    private func addFlightAnimation() {
+    private func addScaleAndFligAnimation() {
+        
         let go = CAKeyframeAnimation(keyPath: "position")
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 100, y: 160))
@@ -83,16 +87,42 @@ class AnimatedPart: UIView {
                       controlPoint2: CGPoint(x: 176, y: 116))
         go.path = path.cgPath
         go.autoreverses = false
-        go.duration = 5
-        go.repeatCount = 1
         go.rotationMode = .rotateAuto
         
-        plane.add(go, forKey: nil)
-    }
-    
-    private func addScaleAnimation() {
+        let scale = CAKeyframeAnimation(keyPath: "transform.scale")
         
+        // let anim = CAKeyframeAnimation(keyPath: "transform.scale")
+        scale.values = [1, 1.5, 1]
         
+        //   scale.valueFunction = CAValueFunction(name: CAValueFunctionName.scale)
+        //   scale.fromValue = CATransform3DIdentity
+        //   scale.fromValue = self.plane.bounds
+        //    scale.toValue = self.plane.bounds.height * 5
+        //  scale.fromValue = plane.affineTransform()
+        //  scale.fromValue = addScaleAnimation()
+        //   scale.toValue = plane.affineTransform
+        // scale.toValue =  layer.transform = CATransform3DMakeScale(1.5, 1.5, 0)
+        //  scale.toValue = CATransform3DMakeScale(26, 30, 0)
+        //  scale.toValue = CATransform3DMakeScale(bounds.size.width * 2, 30, 0)
+        
+        // scale.fromValue = CGAffineTransform(scaleX: 10, y: 1)
+        // scale.toValue = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        
+        //     scale.duration = 7
+        //      scale.repeatCount = 1
+        // scale.beginTime = 2
+        
+        //        let scale = CGAffineTransform(scaleX: 2, y: 2)
+        
+        //  apathLayer.setAffineTransform(scale)
+        //   return apathLayer
+        
+        let flightAndScale = CAAnimationGroup()
+        flightAndScale.animations = [go, scale]
+        flightAndScale.duration = 7
+        flightAndScale.repeatCount = 1
+        
+        plane.add(flightAndScale, forKey: nil)
     }
     
     required init?(coder: NSCoder) {
