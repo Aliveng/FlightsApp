@@ -105,11 +105,11 @@ class FlightsViewController: UIViewController {
         topCardView.addSubview(backImageView)
         topCardView.addSubview(buildingsImageView)
         topCardView.addSubview(titleButton)
-        view.addSubview(planeInСircleShadow)
-        view.addSubview(planeInСircle)
         view.addSubview(topCardView)
         view.addSubview(bottomCardView)
-
+        view.addSubview(planeInСircleShadow)
+        view.addSubview(planeInСircle)
+        
         planeInСircle.snp.makeConstraints({ item in
             item.top.equalToSuperview().offset(280)
             item.height.equalTo(39)
@@ -187,7 +187,6 @@ class FlightsViewController: UIViewController {
             item.width.equalTo(UIScreen.main.bounds.width)
             item.left.equalToSuperview()
         })
-        
     }
     
     @objc

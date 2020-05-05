@@ -49,6 +49,22 @@ class AirportOnMapViewController: UIViewController {
         return view
     }()
     
+    lazy var pointStartLabel: UILabel = {
+        let view = UILabel()
+        view.text = "Egypt"
+        view.font = .systemFont(ofSize: 8)
+        view.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        return view
+    }()
+    
+    lazy var pointStopLabel: UILabel = {
+        let view = UILabel()
+        view.text = "India"
+        view.font = .systemFont(ofSize: 8)
+        view.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        return view
+    }()
+    
     lazy var departureView: LabelsView = {
         let view = LabelsView(caption: "", title: "NAG", subtitle: "18 h 10 min +")
         view.titleLabel.font = .boldSystemFont(ofSize: 15)
@@ -95,7 +111,6 @@ class AirportOnMapViewController: UIViewController {
         return view
     }()
     
-    
     lazy var seatView: LabelsView = {
         let view = LabelsView(caption: "Seat", title: "22", subtitle: "A")
         view.backgroundColor = .clear
@@ -122,15 +137,18 @@ class AirportOnMapViewController: UIViewController {
         return view
     }()
     
-    lazy var barcodeImgView: UIImageView = {
-        let view = UIImageView(image: .barcodeImg)
+    lazy var barcodeView: BarCodeView = {
+        let view = BarCodeView()
         return view
     }()
     
-//        lazy var barcodeView: BarCodeView = {
-//            let view = BarCodeView(
-//            return view
-//        }()
+    lazy var barcodeNumberLabale: UILabel = {
+        let view = UILabel()
+        view.text = "(01)09312345678904"
+        view.font = .systemFont(ofSize: 12)
+        view.textColor = #colorLiteral(red: 0.3610368967, green: 0.3489218354, blue: 0.3529159427, alpha: 1)
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,13 +160,16 @@ class AirportOnMapViewController: UIViewController {
         topCardView.addSubview(mapImageView)
         topCardView.addSubview(backImageView)
         topCardView.addSubview(titleView)
+        topCardView.addSubview(pointStartLabel)
+        topCardView.addSubview(pointStopLabel)
         view.addSubview(bottomCardView)
         infoCardView.addSubview(passengerView)
         infoCardView.addSubview(flightView)
         infoCardView.addSubview(seatView)
         infoCardView.addSubview(cabinView)
         bottomCardView.addSubview(barcodeCardView)
-        barcodeCardView.addSubview(barcodeImgView)
+        barcodeCardView.addSubview(barcodeView)
+        barcodeCardView.addSubview(barcodeNumberLabale)
         bottomCardView.addSubview(infoCardView)
         view.addSubview(animatedView)
         
@@ -162,6 +183,18 @@ class AirportOnMapViewController: UIViewController {
             item.top.equalToSuperview()
             item.height.equalTo(300)
             item.left.right.equalToSuperview()
+        })
+        
+        pointStartLabel.snp.makeConstraints({ item in
+            item.top.equalToSuperview().offset(198)
+            item.height.equalTo(8)
+            item.left.equalToSuperview().offset(110)
+        })
+        
+        pointStopLabel.snp.makeConstraints({ item in
+            item.top.equalToSuperview().offset(198)
+            item.height.equalTo(8)
+            item.left.equalToSuperview().offset(245)
         })
         
         mapImageView.snp.makeConstraints({ item in
@@ -226,13 +259,16 @@ class AirportOnMapViewController: UIViewController {
             item.left.right.equalToSuperview()
         })
         
-        barcodeImgView.snp.makeConstraints({ item in
-            item.top.equalToSuperview().offset(35)
-            item.height.equalTo(60.07)
-            item.width.equalTo(110.49)
-            item.centerX.equalToSuperview().offset(10)
-            item.left.equalToSuperview().offset(71.92)
-          
+        barcodeView.snp.makeConstraints({ item in
+            item.top.equalToSuperview().offset(50)
+            item.height.equalTo(30.07)
+            item.width.equalTo(223.49)
+            item.left.equalToSuperview().offset(32.25)
+        })
+        
+        barcodeNumberLabale.snp.makeConstraints({ item in
+            item.top.equalTo(barcodeView.snp.bottom).offset(4)
+            item.left.equalToSuperview().offset(90)
         })
         
         passengerView.snp.makeConstraints({ item in

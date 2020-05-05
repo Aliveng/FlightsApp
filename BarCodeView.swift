@@ -53,6 +53,5 @@ final class BarCodeView: UIView {
                 bar.fill()
             }
         }
-        
     }
 }

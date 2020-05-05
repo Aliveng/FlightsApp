@@ -41,12 +41,6 @@ class AnimatedPart: UIView {
         return layer
     }()
     
-    // BezierPath from svg
-    // let shape = UIBezierPath()shape.move(to: CGPoint(x: 0.45, y: 16.39))
-    // shape.addCurve(to: CGPoint(x: 115.68, y: 20.54),
-    // controlPoint1: CGPoint(x: 0.45, y: 16.39),
-    // controlPoint2: CGPoint(x: 55.09, y: -21.27))
-    
     func createArc() {
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 100, y: 160))
@@ -56,7 +50,6 @@ class AnimatedPart: UIView {
         path.lineWidth = 1.5
         UIColor.yellowPath.setStroke()
         path.stroke()
-        
         path.close()
     }
     
@@ -70,15 +63,10 @@ class AnimatedPart: UIView {
         layer.addSublayer(pointEgypt)
         layer.addSublayer(pointIndia)
         layer.addSublayer(plane)
-        
-        //  addFlightAnimation()
         addScaleAndFligAnimation()
-        
-        
     }
     
     private func addScaleAndFligAnimation() {
-        
         let go = CAKeyframeAnimation(keyPath: "position")
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 100, y: 160))
@@ -90,39 +78,18 @@ class AnimatedPart: UIView {
         go.rotationMode = .rotateAuto
         
         let scale = CAKeyframeAnimation(keyPath: "transform.scale")
-        
-        // let anim = CAKeyframeAnimation(keyPath: "transform.scale")
-        scale.values = [1, 1.5, 1]
-        
-        //   scale.valueFunction = CAValueFunction(name: CAValueFunctionName.scale)
-        //   scale.fromValue = CATransform3DIdentity
-        //   scale.fromValue = self.plane.bounds
-        //    scale.toValue = self.plane.bounds.height * 5
-        //  scale.fromValue = plane.affineTransform()
-        //  scale.fromValue = addScaleAnimation()
-        //   scale.toValue = plane.affineTransform
-        // scale.toValue =  layer.transform = CATransform3DMakeScale(1.5, 1.5, 0)
-        //  scale.toValue = CATransform3DMakeScale(26, 30, 0)
-        //  scale.toValue = CATransform3DMakeScale(bounds.size.width * 2, 30, 0)
-        
-        // scale.fromValue = CGAffineTransform(scaleX: 10, y: 1)
-        // scale.toValue = CGAffineTransform(scaleX: 0.1, y: 0.1)
-        
-        //     scale.duration = 7
-        //      scale.repeatCount = 1
-        // scale.beginTime = 2
-        
-        //        let scale = CGAffineTransform(scaleX: 2, y: 2)
-        
-        //  apathLayer.setAffineTransform(scale)
-        //   return apathLayer
+        scale.values = [0.5, 0.8, 1, 1.1, 1.2, 1.1, 1, 0.8, 0.5, 0.4]
         
         let flightAndScale = CAAnimationGroup()
         flightAndScale.animations = [go, scale]
         flightAndScale.duration = 7
         flightAndScale.repeatCount = 1
         
+        flightAndScale.fillMode = CAMediaTimingFillMode.forwards
+        flightAndScale.isRemovedOnCompletion = false
+        
         plane.add(flightAndScale, forKey: nil)
+        
     }
     
     required init?(coder: NSCoder) {

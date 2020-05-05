@@ -81,7 +81,6 @@ class LabelsView: UIView {
             item.left.equalToSuperview().offset(24)
             item.right.equalToSuperview()
         })
-        
     }
     
     required init?(coder: NSCoder) {
