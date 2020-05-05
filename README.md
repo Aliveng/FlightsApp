@@ -7,5 +7,5 @@
   <img src = "Simulator_SE_2.png" width="200px">
  
  <video>
-  <source src="Simulator_SE_animation.gif">
+  <source src="Simulator_SE_animation.mp4">
  </video>
