@@ -193,6 +193,5 @@ class FlightsViewController: UIViewController {
     private func didTapLabel() {
         let controller = AirportOnMapViewController()
         navigationController?.pushViewController(controller, animated: true)
-        print("Переход на карту")
     }
 }
